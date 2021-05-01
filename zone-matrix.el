@@ -1,11 +1,10 @@
-;; -*- Emacs-Lisp -*-
-;; zone-matrix.el --- The matrix screen saver on Emacs.
+;; zone-matrix.el --- The matrix screen saver on Emacs
 
 ;; Copyright (C) 2011 Dylan.Wen
 
 ;; Author: Dylan.Wen <hhkbp2@gmail.com>
 ;; Created: Jan 25, 2011
-;; Time-stamp: <2013-07-28 17:53>
+;; Time-stamp: <2017-05-01 16:13>
 
 ;; This file is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -172,7 +171,7 @@ into blank screen would be 1/N."
                ;;(> zmx-update-speed-factor 1)
                (> zmx-light-bar-max-length 1)
                (> zmx-light-bar-max-number 1))
-    (error "error in function `zone-matrix': wrong setting.")))
+    (error "Error in function `zone-matrix': wrong setting")))
 
 
 (defcustom zmx-ascii-char-table
@@ -499,10 +498,12 @@ default nil.
 Two similiar function, `zmx-text-impl' and `zmx-buffer-impl', are provided
 in this module based on different implementations.
 The former keeps track of a text object, which will be used to
-reflesh the whole screen. The later directly modify the zone buffer.
+reflesh the whole screen.  The later directly modify the zone buffer.
 It seems the `zmx-text-impl' runs somewhat nicer than the other, even though
-it requires higher resource consumption. So it is used as the default."
+it requires higher resource consumption.  So it is used as the default."
   (zmx-text-impl))
 
 
 (provide 'zone-matrix)
+
+;;; zone-matrix.el ends here

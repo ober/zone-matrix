@@ -1,31 +1,8 @@
-;; -*- Emacs-Lisp -*-
-;; Settings for `zone'.
-
-;; Copyright (C) 2011 Dylan.Wen
-
-;; Author: Dylan.Wen <hhkbp2@gmail.com>
-;; Time-stamp: <2013-08-05 10:21>
-
-;; This file is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; This file is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
+;;; zone-settings.el --- Settings for `zone'
 
 ;;; Commentary:
 
 ;;; Code:
-
-
-(require 'zone)
-(require 'zone-matrix-settings)
 
 
 (defcustom zone-ad-restore nil
@@ -43,17 +20,6 @@
   ;; the window config
   (add-to-list 'zone-ad-restore
                `(set-window-configuration ,(current-window-configuration)))
-
-  ;; if ecb is enabled, turn it off.
-  (let ((ecb-on nil))
-    (condition-case nil
-        (if ecb-minor-mode
-            (setq ecb-on t))
-      (error (setq ecb-on nil)))
-    (when ecb-on
-      (add-to-list 'zone-ad-restore
-                   '(ecb))
-      (ecb-deactivate)))
 
   ;; fullfill the window with just one current buffer
   (delete-other-windows)
@@ -85,28 +51,30 @@
     (funcall zone-ad-restore)))
 
 
-(defun zone-settings ()
-  "Settings for `zone'."
+(use-package zone
+  :defer t
+  :config
+  (progn
+    (require 'zone-matrix)
+    (require 'zone-matrix-settings)
 
-  ;; apply settings for `zone-matrix'
-  (zone-matrix-settings)
-  ;; set `zone-matrix' to be the only zone program
-  (setq zone-programs [
-                       zone-pgm-putz-with-case
-                       zone-pgm-random-life
-                       zone-matrix
-                       ])
+    ;; set `zone-matrix' to be the only zone program
+    (setq zone-programs [
+                         zone-pgm-putz-with-case
+                         zone-pgm-random-life
+                         zone-matrix
+                         ])
 
-  ;; activate advices
-  (ad-activate 'zone)
+    ;; activate advices
+    (ad-activate 'zone)
 
-  ;; trigger screen saver when Emacs is idle for a while
-  ;; (zone-when-idle (* 60
-  ;;                    15 ;; personally I feel 15 minutes is fine
-  ;;                    ))
+    ;; trigger screen saver when Emacs is idle for a while
+    ;; (zone-when-idle (* 60
+    ;;                    15 ;; personally I feel 15 minutes is fine
+    ;;                    ))
+    )
   )
 
-(zone-settings)
-
-
 (provide 'zone-settings)
+
+;;; zone-settings.el ends here
