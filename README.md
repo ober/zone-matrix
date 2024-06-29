@@ -1,7 +1,7 @@
 zone-matrix
 ===========
 
-These files are take from Dylan Wen's dot-emacs repo at:
+These files are taken from Dylan Wen's dot-emacs repo at:
 
 https://bitbucket.org/lisp/dot-emacs
 
